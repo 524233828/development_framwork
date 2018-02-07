@@ -1,0 +1,28 @@
+{
+    "name": "fastd/dobee",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "keywords": ["FastD"],
+    "authors": [
+        {
+            "name": "JanHuang",
+            "email": "bboyjanhuang@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "fastd/fastd": "^3.1"
+    },
+    "require-dev": {
+        "phpunit/dbunit": "^2.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    }
+}
