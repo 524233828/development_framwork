@@ -27,7 +27,7 @@ class ApiDocConsole extends Command
 
     public function configure()
     {
-        $this->setName('yd:gen-apidoc')
+        $this->setName('ant-fd:gen-doc')
             ->setDescription('生成对应控制器的markdown文档')
             ->addOption('controller', 'c', InputOption::VALUE_REQUIRED,
                 '要生成文档的控制器')

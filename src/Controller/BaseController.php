@@ -17,8 +17,8 @@ use Constant\ErrorCode;
  * 控制层，后续在此扩展对入参、出参的过滤与控制
  * 注释参数过滤规定：数组用[]表示，index[]，表示index字段是个数组
  * 示例：
- * [].index，则返回的data位数组，如[0:{index:""},1:{index:""}]
- * index[].a,则返回的data中有index数组字段，index中有a参数，如：{index:[0:{a:""},1:{b:""}]}
+ * [].index，则返回的data为数组，如[0:{index:""},1:{index:""}]
+ * index[].a,则返回的data中有index数组字段，index中有a参数，如：{index:[0:{a:""},1:{a:""}]}
  * 注意，上述例子不能写成index.[].a
  * Class BaseController
  * @package Controller

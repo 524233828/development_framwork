@@ -1,6 +1,5 @@
 <?php
 namespace Helper;
-use Constant\CacheKey;
 
 /**
  * Filter 过滤
@@ -29,38 +28,4 @@ class FilterHelper
         }
 
     }
-
-    /**
-     * 是否提示用户答谢
-     * @return boolean [description]
-     */
-    public static function isThank($text, $room_id)
-    {
-        $info = json_decode(redis()->hGet(Cachekey::API_CHAT_ROOM_INFO, $room_id), true);
-        if(isset($info['thank_expire'])){
-            if ( $info['thank_expire']-time() > 0 ) {
-                return false;
-            }
-        }
-
-        $thank_words = Model('Setting')->get('thank_words_filter', '谢,thank');
-        if ($thank_words=='-1') {      //-1 提示答谢失效
-            return false;
-        }
-
-        $thank_words = explode(',', $thank_words);
-        foreach ($thank_words as $key => $value) {
-            $pos = strpos($text, $value);
-            if ($pos !== false) {
-                $info = $info ? : [];
-                $info['thank_expire'] = time() + config()->get('thank_expire_space', 30) * 60;
-                redis()->hSet(Cachekey::API_CHAT_ROOM_INFO, $room_id, json_encode($info));
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 }
