@@ -11,7 +11,7 @@ return [
     /**
      * The application name.
      */
-    'name' => 'dobee',
+    'name' => 'ant-fd',
 
     /**
      * Application logger path
@@ -45,10 +45,12 @@ return [
      * Bootstrap service.
      */
     'services' => [
+        \ServiceProvider\EnvConfigServiceProvider::class,
         \FastD\ServiceProvider\RouteServiceProvider::class,
         \FastD\ServiceProvider\LoggerServiceProvider::class,
         \FastD\ServiceProvider\DatabaseServiceProvider::class,
         \FastD\ServiceProvider\CacheServiceProvider::class,
+        \ServiceProvider\RedisServiceProvider::class,
     ],
 
     /**
@@ -76,6 +78,10 @@ return [
                     'code' => 401
                 ]
             ]
-        ])
+        ]),
+        // 分发
+        'dispatch' => new Middleware\Dispatch(),
+        //入参过滤
+        'filter' => new Middleware\IncomeFilter(),
     ],
 ];
