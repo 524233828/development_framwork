@@ -26,6 +26,9 @@ class ErrorCode
     const ERR_NO_PARAMETERS = -6; //参数缺失
     const ERR_UNKNOWN = -7; // 未知错误
 
+    // 10xx 模板系统错误
+    const DEMO_NOT_FOUND = 1000;
+
     /**
      * 错误代码与消息的对应数组
      *
@@ -37,6 +40,8 @@ class ErrorCode
         self::ERR_INVALID_PARAMETER => ['请求参数错误', Response::HTTP_BAD_REQUEST],
         self::ERR_CHECK_SIGN        => ['签名错误', Response::HTTP_FORBIDDEN],
         self::ERR_NO_PARAMETERS     => ['参数缺失', Response::HTTP_BAD_REQUEST],
+
+        self::DEMO_NOT_FOUND        => ['模板不存在', Response::HTTP_NOT_FOUND],
     ];
 
     /**
