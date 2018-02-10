@@ -8,7 +8,6 @@
 
 namespace Exception;
 
-
 use Constant\ErrorCode;
 
 class DemoException extends BaseException

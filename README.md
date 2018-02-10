@@ -129,3 +129,40 @@ redis缓存的key名
 - `src/Testing/DemoTest.php`
 
 
+## 部分常用命令
+
+### 生成文档
+```sh
+
+bin/console ant-fd:gen-doc -c Demo -f demo
+
+```
+
+### 单元测试
+
+````sh
+
+vendor/phpunit/phpunit/phpunit
+
+````
+
+### 检查代码中不符合PSR规范的代码
+
+````
+
+vendor/squizlabs/php_codesniffer/bin/phpcs src/ --standard=PSR2 --ignore=src/Component/ --report-file=./phpcs.txt
+
+````
+
+### 修复代码中不符合PSR规范的代码
+
+````
+
+vendor/squizlabs/php_codesniffer/bin/phpcbf src/ --standard=PSR2 --ignore=src/Component/
+
+````
+
+
+
+
+

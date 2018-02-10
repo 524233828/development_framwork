@@ -8,9 +8,7 @@
  */
 namespace Testing;
 
-
 use FastD\TestCase;
-
 
 class WelcomeControllerTest extends TestCase
 {
@@ -26,6 +24,6 @@ class WelcomeControllerTest extends TestCase
     {
         $request = $this->request('GET', '/hello/foo');
         $response = $this->app->handleRequest($request);
-        $this->equalsJson($response, ['msg' => 'hello foo', ]);
+        $this->equalsJson($response, ['msg' => 'hello dobee', ]);
     }
 }

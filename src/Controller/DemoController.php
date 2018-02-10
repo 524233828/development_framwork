@@ -8,7 +8,6 @@
 
 namespace Controller;
 
-
 use FastD\Http\ServerRequest;
 use Logic\DemoLogic;
 
@@ -29,5 +28,4 @@ class DemoController extends BaseController
         $uid = $request->getParam("uid");
         return $this->response(DemoLogic::getInstance()->getDemo($uid), true);
     }
-
 }

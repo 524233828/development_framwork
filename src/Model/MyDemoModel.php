@@ -8,7 +8,6 @@
 
 namespace Model;
 
-
 class MyDemoModel extends BaseModel
 {
     const DEMO_TABLE = "demo";
@@ -26,5 +25,4 @@ class MyDemoModel extends BaseModel
             ['id' => $uid]
         );
     }
-
 }

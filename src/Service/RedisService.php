@@ -7,7 +7,6 @@
 
 namespace Service;
 
-
 /**
  * The redis connection class is used to establish a connection to a [redis](http://redis.io/) server.
  *

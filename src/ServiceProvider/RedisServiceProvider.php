@@ -7,7 +7,6 @@
 
 namespace ServiceProvider;
 
-
 use Service\RedisService;
 use FastD\Container\Container;
 use FastD\Container\ServiceProviderInterface;

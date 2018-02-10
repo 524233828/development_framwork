@@ -9,7 +9,6 @@
 
 namespace Controller;
 
-
 use FastD\Http\ServerRequest;
 
 class WelcomeController

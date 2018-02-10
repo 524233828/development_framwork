@@ -16,15 +16,14 @@ class Dispatch extends Middleware
         try {
             $response = $next($request);
         } catch (\Exception $e) {
-
-            if($e->getCode()!==0){
+            if ($e->getCode()!==0) {
                 $response = new ApiResponse(
                     $e->getMessage(),
                     $e->getCode(),
                     null,
                     ErrorCode::status($e->getCode())
                 );
-            }else{
+            } else {
                 BaseException::SystemError();
             }
         }

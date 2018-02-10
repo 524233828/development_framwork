@@ -20,16 +20,14 @@ class IncomeFilter extends Middleware
     {
         // TODO: Implement handle() method.
 
-        if($request->getMethod()==="GET")
-        {
+        if ($request->getMethod()==="GET") {
             $data = $request->getQueryParams();
-        }else{
+        } else {
             $data = $request->getParsedBody();
         }
-        if($this->requestFilter($data))
-        {
+        if ($this->requestFilter($data)) {
             return $next($request);
-        }else{
+        } else {
             BaseException::ParamsError();
         }
     }
@@ -41,30 +39,25 @@ class IncomeFilter extends Middleware
      */
     private function requestFilter($data)
     {
-        try
-        {
+        try {
             $route_callback = route()->getActiveRoute()->getCallback();
             list($callbackController, $callbackMethod) = explode('@', $route_callback);
-            $parameters = $this->_genDoc($callbackController,$callbackMethod);
-            if(!$parameters||count($parameters)<1){
+            $parameters = $this->_genDoc($callbackController, $callbackMethod);
+            if (!$parameters||count($parameters)<1) {
                 return true;
             }
 
             $response_data = [];
-            foreach ($parameters as $param)
-            {
-                if($param['must']=="true"){
-                    $this->filterHandler($data,$param['name'],$param['type']);
+            foreach ($parameters as $param) {
+                if ($param['must']=="true") {
+                    $this->filterHandler($data, $param['name'], $param['type']);
                 }
             }
 
             return true;
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             throw $e;
         }
-
     }
 
     /**
@@ -73,47 +66,41 @@ class IncomeFilter extends Middleware
      * @param $type
      * @return bool
      */
-    private function filterHandler($data,$param,$type)
+    private function filterHandler($data, $param, $type)
     {
-        $list = explode('.',$param);
+        $list = explode('.', $param);
 
         $param_list = array_shift($list);
 
-        if(false===strpos($param_list,"[]")&&count($list)>0)
-        {
-            return $this->filterHandler($data[$param_list],implode(".",$list),$type);
-        }else if(false!==strpos($param_list,"[]")&&count($list)>0){
-            $key = str_replace("[]","",$param_list);
+        if (false===strpos($param_list, "[]")&&count($list)>0) {
+            return $this->filterHandler($data[$param_list], implode(".", $list), $type);
+        } elseif (false!==strpos($param_list, "[]")&&count($list)>0) {
+            $key = str_replace("[]", "", $param_list);
 
-            if($key==""){
-                foreach ($data as $k=>$v)
-                {
-                    return $this->filterHandler($data[$k],implode(".",$list),$type);
+            if ($key=="") {
+                foreach ($data as $k => $v) {
+                    return $this->filterHandler($data[$k], implode(".", $list), $type);
                 }
-            }else{
-                if(isset($data[$key])){
-                    foreach ($data[$key] as $k=>$v)
-                    {
-                        return $this->filterHandler($data[$key][$k],implode(".",$list),$type);
+            } else {
+                if (isset($data[$key])) {
+                    foreach ($data[$key] as $k => $v) {
+                        return $this->filterHandler($data[$key][$k], implode(".", $list), $type);
                     }
-                }else{
+                } else {
                     return BaseException::ParamsMissing();
                 }
             }
-        }else if(false===strpos($param_list,"[]")&&count($list)==0){
-
-            if(!isset($data[$param_list]))
-            {
+        } elseif (false===strpos($param_list, "[]")&&count($list)==0) {
+            if (!isset($data[$param_list])) {
                 BaseException::ParamsMissing();
             }
 
-            if(!$this->typeCheck($data[$param_list],$type))
-            {
+            if (!$this->typeCheck($data[$param_list], $type)) {
                 BaseException::ParamsError();
             }
 
             return true;
-        }else{
+        } else {
             BaseException::SystemError();
         }
     }
@@ -123,10 +110,9 @@ class IncomeFilter extends Middleware
      * @param $type
      * @return bool|int
      */
-    private function typeCheck($data,$type)
+    private function typeCheck($data, $type)
     {
-        switch ($type)
-        {
+        switch ($type) {
             case "int":
                 return $this->intValidate($data);
                 break;
@@ -138,9 +124,8 @@ class IncomeFilter extends Middleware
                 break;
             case "file":
                 return true;
-            default :
+            default:
                 return false;
-
         }
     }
 
@@ -150,7 +135,7 @@ class IncomeFilter extends Middleware
      */
     private function intValidate($data)
     {
-        return preg_match("/^\d{1,}$/",$data);
+        return preg_match("/^\d{1,}$/", $data);
     }
 
     /**
@@ -159,12 +144,11 @@ class IncomeFilter extends Middleware
      */
     private function stringValidate($data)
     {
-        if(empty($data))
-        {
+        if (empty($data)) {
             return false;
         }
 
-        return !preg_match("/(\\|\"){1,}/",$data);
+        return !preg_match("/(\\|\"){1,}/", $data);
     }
 
     /**
@@ -173,7 +157,7 @@ class IncomeFilter extends Middleware
      */
     private function floatValidate($data)
     {
-        return preg_match("/^\d{1,}\.{1}\d{0,2}/",$data);
+        return preg_match("/^\d{1,}\.{1}\d{0,2}/", $data);
     }
 
     /**
@@ -181,7 +165,7 @@ class IncomeFilter extends Middleware
      * @param $callbackMethod
      * @return array
      */
-    private function _genDoc($callbackController,$callbackMethod)
+    private function _genDoc($callbackController, $callbackMethod)
     {
         $data = [];
 

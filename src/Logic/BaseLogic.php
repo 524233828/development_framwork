@@ -13,11 +13,12 @@ namespace Logic;
  * Class BaseLogic
  * @package Logic
  */
-class BaseLogic{
+class BaseLogic
+{
 
     private static $instance;
 
-    private final function __construct()
+    final private function __construct()
     {
     }
 

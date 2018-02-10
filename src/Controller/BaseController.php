@@ -48,28 +48,23 @@ class BaseController
      */
     private function responseFilter($data)
     {
-        try
-        {
+        try {
             $route_callback = route()->getActiveRoute()->getCallback();
             list($callbackController, $callbackMethod) = explode('@', $route_callback);
-            $parameters = $this->_genDoc($callbackController,$callbackMethod);
-            if(!$parameters||count($parameters)<1){
+            $parameters = $this->_genDoc($callbackController, $callbackMethod);
+            if (!$parameters||count($parameters)<1) {
                 return $data;
             }
 
             $response_data = [];
-            foreach ($parameters as $param)
-            {
-                $this->filterHandler($data,$param,$response_data);
+            foreach ($parameters as $param) {
+                $this->filterHandler($data, $param, $response_data);
             }
 
             return $response_data;
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             BaseException::SystemError();
         }
-
     }
 
     /**
@@ -79,36 +74,33 @@ class BaseController
      * @param array $response_data
      * @return string
      */
-    private function filterHandler($data,$param,&$response_data = [])
+    private function filterHandler($data, $param, &$response_data = [])
     {
-        $list = explode('.',$param);
+        $list = explode('.', $param);
 
         $param_list = array_shift($list);
 
-        if(false===strpos($param_list,"[]")&&count($list)>0)
-        {
-            $this->filterHandler($data[$param_list],implode(".",$list),$response_data[$param_list]);
-        }else if(false!==strpos($param_list,"[]")&&count($list)>0){
-            $key = str_replace("[]","",$param_list);
+        if (false===strpos($param_list, "[]")&&count($list)>0) {
+            $this->filterHandler($data[$param_list], implode(".", $list), $response_data[$param_list]);
+        } elseif (false!==strpos($param_list, "[]")&&count($list)>0) {
+            $key = str_replace("[]", "", $param_list);
 
-            if($key==""){
-                foreach ($data as $k=>$v)
-                {
-                    $this->filterHandler($data[$k],implode(".",$list),$response_data[$k]);
+            if ($key=="") {
+                foreach ($data as $k => $v) {
+                    $this->filterHandler($data[$k], implode(".", $list), $response_data[$k]);
                 }
-            }else{
-                if(isset($data[$key])){
-                    foreach ($data[$key] as $k=>$v)
-                    {
-                        $this->filterHandler($data[$key][$k],implode(".",$list),$response_data[$key][$k]);
+            } else {
+                if (isset($data[$key])) {
+                    foreach ($data[$key] as $k => $v) {
+                        $this->filterHandler($data[$key][$k], implode(".", $list), $response_data[$key][$k]);
                     }
-                }else{
+                } else {
                     return $response_data = $data;
                 }
             }
-        }else if(false===strpos($param_list,"[]")&&count($list)==0){
+        } elseif (false===strpos($param_list, "[]")&&count($list)==0) {
             return $response_data[$param_list] = isset($data[$param_list])?$data[$param_list]:"";
-        }else{
+        } else {
             BaseException::SystemError();
         }
     }
@@ -119,7 +111,7 @@ class BaseController
      * @param $callbackMethod
      * @return array
      */
-    private function _genDoc($callbackController,$callbackMethod)
+    private function _genDoc($callbackController, $callbackMethod)
     {
         $reflect = new \ReflectionClass($callbackController);
         $method = $reflect->getMethod($callbackMethod);
@@ -130,8 +122,6 @@ class BaseController
         $data = [];
 
         if (!empty($info['returnParam'])) {
-
-
             if (!is_array($info['returnParam'])) {
                 list($name, $type, $text) = explode('|', $info['returnParam']);
                 $data[] = $name;

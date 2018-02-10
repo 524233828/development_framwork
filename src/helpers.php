@@ -36,13 +36,14 @@ function myLog($filename = "debug", $level = \Monolog\Logger::DEBUG)
     $log->pushHandler(
         (new \Monolog\Handler\RotatingFileHandler($log_path.$filename, $max_file, $level))
             ->setFormatter(
-                new \Monolog\Formatter\LineFormatter(\Monolog\Formatter\LineFormatter::SIMPLE_FORMAT,
+                new \Monolog\Formatter\LineFormatter(
+                    \Monolog\Formatter\LineFormatter::SIMPLE_FORMAT,
                     "H:i:s.u"
                 )
             )//记录毫秒数
     );
 
-    if(!$is_log){
+    if (!$is_log) {
         $log->pushHandler(new \Monolog\Handler\NullHandler($level));
     }
     return $log;

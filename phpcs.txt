@@ -1,0 +1,83 @@
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Console/ApiDocConsole.php
+----------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------------------------
+  55 | WARNING | Method name "_genDoc" should not be prefixed with an underscore to
+     |         | indicate visibility
+ 137 | WARNING | Method name "_genMd" should not be prefixed with an underscore to
+     |         | indicate visibility
+----------------------------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Controller/BaseController.php
+----------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------------------------
+ 114 | WARNING | Method name "_genDoc" should not be prefixed with an underscore to
+     |         | indicate visibility
+----------------------------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Exception/BaseException.php
+-------------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+-------------------------------------------------------------------------------------
+  9 | ERROR | Method name "BaseException::SystemError" is not in camel caps format
+ 17 | ERROR | Method name "BaseException::ParamsError" is not in camel caps format
+ 25 | ERROR | Method name "BaseException::ParamsMissing" is not in camel caps format
+-------------------------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Exception/DemoException.php
+------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+------------------------------------------------------------------------------------
+ 15 | ERROR | Method name "DemoException::DemoNotFound" is not in camel caps format
+------------------------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Helper/DocParser.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 20 | ERROR | Visibility must be declared on method "parse"
+----------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Middleware/IncomeFilter.php
+----------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------------------------
+ 168 | WARNING | Method name "_genDoc" should not be prefixed with an underscore to
+     |         | indicate visibility
+----------------------------------------------------------------------------------------
+
+
+FILE: /mnt/hgfs/htdocs/development_framwork/src/Service/RedisService.php
+----------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 19 WARNINGS AFFECTING 19 LINES
+----------------------------------------------------------------------------------------
+  63 | WARNING | Line exceeds 120 characters; contains 143 characters
+  67 | WARNING | Line exceeds 120 characters; contains 127 characters
+  71 | WARNING | Line exceeds 120 characters; contains 185 characters
+  72 | WARNING | Line exceeds 120 characters; contains 158 characters
+  83 | WARNING | Line exceeds 120 characters; contains 147 characters
+ 142 | WARNING | Line exceeds 120 characters; contains 122 characters
+ 151 | WARNING | Line exceeds 120 characters; contains 125 characters
+ 157 | WARNING | Line exceeds 120 characters; contains 125 characters
+ 162 | WARNING | Line exceeds 120 characters; contains 128 characters
+ 190 | WARNING | Line exceeds 120 characters; contains 174 characters
+ 205 | WARNING | Line exceeds 120 characters; contains 136 characters
+ 209 | WARNING | Line exceeds 120 characters; contains 192 characters
+ 211 | WARNING | Line exceeds 120 characters; contains 125 characters
+ 216 | WARNING | Line exceeds 120 characters; contains 141 characters
+ 217 | WARNING | Line exceeds 120 characters; contains 166 characters
+ 220 | WARNING | Line exceeds 120 characters; contains 186 characters
+ 225 | WARNING | Line exceeds 120 characters; contains 131 characters
+ 232 | WARNING | Property name "$_socket" should not be prefixed with an underscore to
+     |         | indicate visibility
+ 280 | WARNING | Line exceeds 120 characters; contains 139 characters
+----------------------------------------------------------------------------------------
+
+

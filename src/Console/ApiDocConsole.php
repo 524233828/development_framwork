@@ -2,7 +2,6 @@
 
 namespace Console;
 
-
 use FastD\Routing\Route;
 use Helper\DocParser;
 use Symfony\Component\Console\Command\Command;
@@ -29,11 +28,19 @@ class ApiDocConsole extends Command
     {
         $this->setName('ant-fd:gen-doc')
             ->setDescription('生成对应控制器的markdown文档')
-            ->addOption('controller', 'c', InputOption::VALUE_REQUIRED,
-                '要生成文档的控制器')
-            ->addOption('output', 'o', InputOption::VALUE_OPTIONAL,
-                '输出md的文件夹路径(请用绝对路径),默认放在doc目录')
-            ->addOption('filename','f',InputOption::VALUE_OPTIONAL);
+            ->addOption(
+                'controller',
+                'c',
+                InputOption::VALUE_REQUIRED,
+                '要生成文档的控制器'
+            )
+            ->addOption(
+                'output',
+                'o',
+                InputOption::VALUE_OPTIONAL,
+                '输出md的文件夹路径(请用绝对路径),默认放在doc目录'
+            )
+            ->addOption('filename', 'f', InputOption::VALUE_OPTIONAL);
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -52,7 +59,6 @@ class ApiDocConsole extends Command
 
         foreach ($routeList as $value) {
             foreach ($value as $v) {
-
                 /* @var Route $v */
                 $data = [
                     'url' => $v->getName(),
