@@ -17,8 +17,11 @@ class DemoLogic extends BaseLogic
 
     public function getDemo($uid)
     {
+        $log = myLog('demo');
+        $log->addDebug("开始获取demo");
+        $log->addDebug("uid:".$uid);
         $demo = MyDemoModel::getDemo($uid);
-
+        $log->addDebug("demo:".json_encode($demo));
         if(empty($demo)){
             DemoException::DemoNotFound();
         }

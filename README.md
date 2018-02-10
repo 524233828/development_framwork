@@ -119,3 +119,13 @@ redis缓存的key名
 - 根据文档编写单元测试
 
 
+## 示例文件
+
+- `src/Console/DemoConsole.php`
+- `src/Controller/DemoController.php`
+- `src/Exception/DemoException.php`
+- `src/Logic/DemoLogic.php`
+- `src/Model/DemoModel.php`
+- `src/Testing/DemoTest.php`
+
+
