@@ -82,5 +82,11 @@ return [
         'dispatch' => new Middleware\Dispatch(),
         //入参过滤
         'filter' => new Middleware\IncomeFilter(),
+        //rsa解密
+        'rsa' => new \Middleware\RSADecryptMiddleware(),
+        //rsa验签
+        'verify' => new \Middleware\VerifyMiddleware(),
+        //防止重放攻击
+        'reply'  => new \Middleware\TimestampMiddleware()
     ],
 ];
