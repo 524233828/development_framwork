@@ -85,7 +85,7 @@ return [
         //rsa解密
         'rsa' => new \Middleware\RSADecryptMiddleware(),
         //rsa验签
-        'verify' => new \Middleware\VerifyMiddleware(),
+        'verify' => new \Middleware\RSAVerifyMiddleware(),
         //防止重放攻击
         'reply'  => new \Middleware\TimestampMiddleware()
     ],

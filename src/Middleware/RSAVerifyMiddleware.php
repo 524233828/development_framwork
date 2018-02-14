@@ -16,7 +16,7 @@ use ParagonIE\EasyRSA\EasyRSA;
 use ParagonIE\EasyRSA\PublicKey;
 use Psr\Http\Message\ServerRequestInterface;
 
-class VerifyMiddleware extends Middleware
+class RSAVerifyMiddleware extends Middleware
 {
 
     public function handle(ServerRequestInterface $request, DelegateInterface $next)
