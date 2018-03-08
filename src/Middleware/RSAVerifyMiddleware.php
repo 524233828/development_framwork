@@ -35,15 +35,12 @@ class RSAVerifyMiddleware extends Middleware
 
         $unsign_str = http_build_query($params);
 
-        //后续在此扩展盐值
-        $md5_str = md5($unsign_str);
-
         //需要与第三方交换密钥
         $key_string = file_get_contents("/media/raid10/htdocs/development_framwork/data/rsa_key/demo.pub");
 
         $public_key = new PublicKey($key_string);
 
-        if(EasyRSA::verify($md5_str, $sign, $public_key))
+        if(EasyRSA::verify($unsign_str, $sign, $public_key))
         {
             $response = $next($request);
 

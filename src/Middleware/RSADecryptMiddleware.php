@@ -8,13 +8,9 @@
 
 namespace Middleware;
 
-
-use FastD\Http\JsonResponse;
-use FastD\Http\Response;
 use FastD\Middleware\DelegateInterface;
 use FastD\Middleware\Middleware;
 use ParagonIE\EasyRSA\EasyRSA;
-use ParagonIE\EasyRSA\KeyPair;
 use ParagonIE\EasyRSA\PrivateKey;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -22,15 +18,6 @@ class RSADecryptMiddleware extends Middleware
 {
     public function handle(ServerRequestInterface $request, DelegateInterface $next)
     {
-//        $keyPair = KeyPair::generateKeyPair(4096);
-//
-//        $secretKey = $keyPair->getPrivateKey()->getKey();
-//        $publicKey = $keyPair->getPublicKey()->getKey();
-//
-//        return new JsonResponse([
-//            "pri_key" => $secretKey,
-//            "pub_key" => $publicKey,
-//        ]);
         // TODO: Implement handle() method.
 
         //只做解密不做校验
